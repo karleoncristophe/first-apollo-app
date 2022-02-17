@@ -1,0 +1,38 @@
+type User {
+  id: ID
+  name: String
+  email: String
+  password: String
+}
+
+type Query {
+  users: [User]
+  user(id: ID): User
+}
+
+type logIn {
+  user: User
+  token: String
+}
+
+input userInput {
+  name: String
+  email: String
+  password: String
+}
+
+input userLogInInput {
+  email: String
+  password: String
+}
+
+type Mutation {
+  logInUser(input: userLogInInput): logIn
+  createUser(input: userInput): User
+  updateUser(id: ID, input: userInput): User
+  deleteUser(id: ID): Boolean
+}
+
+type Subscription {
+  userAdded: User
+}

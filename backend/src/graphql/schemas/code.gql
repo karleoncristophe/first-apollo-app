@@ -1,0 +1,37 @@
+type Code {
+  id: ID
+  code: Int
+  user: ID
+}
+
+type CreateCode {
+  code: Int
+  user: User
+}
+
+type ResetPassword {
+  user: ID
+  code: Int
+  password: String
+}
+
+input CodeInput {
+  email: String
+}
+
+input ResetPasswordInput {
+  code: Int
+  user: ID
+  password: String
+}
+
+type Query {
+  codes: [Code]
+  code(id: ID): Code
+}
+
+type Mutation {
+  createCode(input: CodeInput): CreateCode
+  updatePassword(input: ResetPasswordInput): ResetPassword
+  verify(code: Int): Code
+}
